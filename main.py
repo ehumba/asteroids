@@ -24,9 +24,10 @@ def main():
                 return
         screen.fill(black)
         player.draw(screen)
+        player.update(dt)
         pygame.display.flip()
-        frames.tick(60)
-        dt = frames.tick() / 1000
+        
+        dt = frames.tick(60) / 1000
         
 
 
