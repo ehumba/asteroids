@@ -1,6 +1,7 @@
 import pygame
 from circleshape import *
 from constants import * 
+from main import *
 
 class Player(CircleShape):
     def __init__(self, x, y):
@@ -8,6 +9,7 @@ class Player(CircleShape):
         self.position = pygame.math.Vector2(x, y)
         self.rotation = 0
         self.radius = PLAYER_RADIUS
+        
 
     # in the player class
     def triangle(self):
@@ -39,3 +41,4 @@ class Player(CircleShape):
             self.move(dt)
         if keys[pygame.K_s]:
             self.move(-dt)
+    
