@@ -10,6 +10,7 @@ class Player(CircleShape):
         self.position = pygame.math.Vector2(x, y)
         self.rotation = 0
         self.radius = PLAYER_RADIUS
+        self.timer = 0
         
 
     # in the player class
@@ -44,8 +45,13 @@ class Player(CircleShape):
             self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.shoot()
+        self.timer -= dt
     
     def shoot(self):
+        if self.timer > 0:
+            return
         bullet = Shot(self.position, self.position, SHOT_RADIUS)
         bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        self.timer += PLAYER_SHOOT_COOLDOWN
+        
         

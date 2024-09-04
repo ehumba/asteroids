@@ -23,6 +23,7 @@ def main():
     AsteroidField.containers = (updatable)
     Shot.containers = (shots, updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
     field = AsteroidField()
     frames = pygame.time.Clock()
     dt = 0
@@ -45,6 +46,11 @@ def main():
             if asteroid.collision(player) == True:
                 print('Game Over!')
                 sys.exit()
+        for asteroid in asteroids:
+            for bullet in shots:
+                if asteroid.collision(bullet) == True:
+                    asteroid.split()
+                    bullet.kill()
         pygame.display.flip()
         
         dt = frames.tick(60) / 1000
